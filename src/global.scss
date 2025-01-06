@@ -1,0 +1,6 @@
+// 全局配置sass
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@0;1&family=Noto+Sans+SC:wght@100..900&family=Noto+Serif+SC:wght@200..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+@mixin googleFonts($fontName: Noto Serif SC, $backupFont: serif) {
+    font-family: $fontName, $backupFont;
+}
