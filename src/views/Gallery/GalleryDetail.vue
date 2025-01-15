@@ -9,13 +9,8 @@
 
                 <div class="gallery-photo grid grid-cols-4 gap-5 my-3">
                     <div v-for="(item, index) in imageSet" :key="index" class="gallery-photo_item">
-                        <v-img 
-                            :src="item.url" 
-                            aspect-ratio="1" 
-                            cover 
-                            @click="openDialog(item)"
-                            transition="scale-transition"
-                        >
+                        <v-img :src="item.url" aspect-ratio="1" cover @click="openDialog(item)"
+                            transition="scale-transition">
                             <template v-slot:placeholder>
                                 <v-row class="fill-height ma-0" align="center" justify="center">
                                     <v-progress-circular indeterminate color="grey-lighten-5"></v-progress-circular>
@@ -27,11 +22,7 @@
                 <v-dialog v-model="dialog" width="1000px" class="gallery-dialog">
                     <v-card class="gallery-dialog_card">
                         <div>
-                            <v-img 
-                                :max-height="800" 
-                                :src="detailURL" 
-                                :lazy-src="detailURL"
-                            >
+                            <v-img :max-height="800" :src="detailURL" :lazy-src="detailURL">
                                 <template v-slot:placeholder>
                                     <v-row class="h-full ma-0" align="center" justify="center">
                                         <v-progress-circular indeterminate color="grey-lighten-5"></v-progress-circular>
@@ -97,8 +88,10 @@ onMounted(() => {
 
     &-photo {
         &_item {
-            transition: transform 0.15s ease-in-out; /* 添加默认的 transition */
+            transition: transform 0.15s ease-in-out;
+            /* 添加默认的 transition */
         }
+
         &_item:hover {
             transform: scale(1.05);
             will-change: transform;
@@ -106,10 +99,13 @@ onMounted(() => {
     }
 
     &-dialog {
-        ::-webkit-scrollbar { display: none; }
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
         &_card {
             padding: 20px;
-            
+
         }
     }
 }

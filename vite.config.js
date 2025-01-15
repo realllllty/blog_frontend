@@ -8,35 +8,35 @@ import ElementPlus from 'unplugin-element-plus/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    ElementPlus({}),
-    vue(),
-    AutoImport({
-        resolvers: [ElementPlusResolver()],
-      }),
-    Components({
-        resolvers: [ElementPlusResolver()],
-    }),
-  ],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './'),
+    plugins: [
+        ElementPlus({}),
+        vue(),
+        AutoImport({
+            resolvers: [ElementPlusResolver()],
+        }),
+        Components({
+            resolvers: [ElementPlusResolver()],
+        }),
+    ],
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, './'),
+        },
     },
-  },
-  server: {
-    proxy: {
-      '/api': {
-        target: 'http://localhost:3000',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
-      },
+    server: {
+        proxy: {
+            '/api': {
+                target: 'http://localhost:3000',
+                changeOrigin: true,
+                rewrite: (path) => path.replace(/^\/api/, ''),
+            },
+        },
     },
-  },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: '@use "@/src/global" as *;',
-      },
-    },
-  }
+    css: {
+        preprocessorOptions: {
+            scss: {
+                additionalData: '@use "@/src/global" as *;',
+            },
+        },
+    }
 });

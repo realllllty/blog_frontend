@@ -8,7 +8,15 @@ import FullPage from "@/src/views/FullPage.vue";
 import BlogDetail from "@/src/views/Blog/BlogDetail.vue"
 import GalleryDetail from "/src/views/Gallery/GalleryDetail.vue"
 import Admin from "@/src/views/Admin/Main.vue"
-import ImageUpload from "../views/Admin/ImageUpload.vue";
+
+// 博客管理
+import BlogList from "@/src/views/Admin/Blog/List.vue"
+import BlogEdit from "@/src/views/Admin/Blog/Edit.vue"
+
+// 图库管理
+import GalleryList from "@/src/views/Admin/Gallery/List.vue"
+import GalleryCreate from "@/src/views/Admin/Gallery/Create.vue"
+import GalleryEdit from "@/src/views/Admin/Gallery/Edit.vue"
 
 // 路由信息
 let routes = [
@@ -17,10 +25,35 @@ let routes = [
         component: Admin,
         children:[
             {
-                path: "imageupload",
-                name: "imageupload",
-                component: ImageUpload
+                path: "blog",
+                name: "BlogList",
+                component: BlogList
             },
+            {
+                path: "blog/create",
+                name: "BlogCreate",
+                component: BlogEdit
+            },
+            {
+                path: "blog/edit/:id",
+                name: "BlogEdit",
+                component: BlogEdit
+            },
+            {
+                path: "gallery",
+                name: "GalleryList",
+                component: GalleryList
+            },
+            {
+                path: "gallery/create",
+                name: "GalleryCreate",
+                component: GalleryCreate
+            },
+            {
+                path: "gallery/edit/:id",
+                name: "GalleryEdit",
+                component: GalleryEdit
+            }
         ]
     },
     {
@@ -62,7 +95,6 @@ let routes = [
         path:"/:pathMatch(.*)*",
         component: NotFound,
     }
-
 ];
 
 // 路由器

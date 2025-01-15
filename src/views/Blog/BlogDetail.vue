@@ -130,7 +130,9 @@ function scrollToHeading(headingText, behavior = 'smooth') {
     display: flex;
     /*  
         保证outline的sticky能够生效: position: sticky 的元素会相对于其最近的可滚动容器的内容区域定位
-        sticky 的边界被限制在这个父级元素的内容区域内，超出这个范围时无法继续生效。如果滚动并没有在这个父级容器上发生，那么 sticky 的效果看起来就像是完全失效了一样。
+        sticky 的边界被限制在这个父级元素的内容区域内，超出这个范围时无法继续生效。
+        如果滚动并没有在这个父级容器上发生(overflow: hidden?)
+        那么 sticky 的效果看起来就像是完全失效了一样
         设置成了滚动容器, 但是本身不滚动, 就会让sticky失效 
     */
     overflow: visible;
