@@ -1,140 +1,230 @@
 <template>
-  <div class="w-full h-full flex justify-center items-center">
-    <img :src="slide2_bg" class="object-cover blur-sm fixed h-full w-full" />
-    <v-card class="h-2/3 w-2/3">
-      <v-container class="h-full pcard">
-        <v-row class="h-full">
-          <v-col sm="0" md="3" class="h-full pcard">
-            <div
-              class="h-full object-fill relative top-3 flex flex-col items-center justify-center flex-nowrap"
-              id="slide2_card"
-            >
-              <div class="avatar-wrap">
-                <v-avatar
-                  v-bind="props"
-                  icon="$vuetify"
-                  :image="icon"
-                  size="80"
-                  class="elevation-20"
-                ></v-avatar>
-              </div>
-              <div
-                  class="text-wrap tracking-in-expand-fwd-bottom"
-                  :style="{ 'animation-play-state': isPlaying ? 'running' : 'paused' }"
-              >
-                <div class="artt intro py-5">About Me</div>
-                <div class="artt text-center mb-3 whitespace-nowrap">
-                  林天宇
-                </div>
-                <div class="artt text-center mb-3">
-                  email
-                </div>
-                <div class="artt text-center mb-3">
-                  17828126523@163.com
-                </div>
-                <div class="artt text-left ml-5">
-                  {{ unitext.breifintro}}
-                </div>
-              </div>
+  <div class="project">
+    <div class="project__header">
+      <h1 class="project__title">博客技术栈</h1>
+      <div class="project__subtitle">全栈开发的个人博客系统</div>
+    </div>
+
+    <div class="project__content">
+      <div class="project__section">
+        <h2 class="project__section-title">前端技术</h2>
+        <div class="project__tech-list">
+          <div class="project__tech-item">
+            <div class="project__tech-icon project__tech-icon--vue">
+              <i class="fab fa-vuejs"></i>
             </div>
-          </v-col>
-          <v-col class="pcard">
-            <div
-                class="artt m-12 text-left tracking-in-expand-fwd-bottom"
-                :style="{ 'animation-play-state': isPlaying ? 'running' : 'paused' }"
-            >
-              {{ unitext.selfintro}}
+            <div class="project__tech-info">
+              <h3 class="project__tech-name">Vue 3</h3>
+              <p class="project__tech-desc">
+                使用 Composition API 和 Script Setup 语法
+                <br>基于 Vite 构建工具
+              </p>
             </div>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-card>
+          </div>
+          <div class="project__tech-item">
+            <div class="project__tech-icon project__tech-icon--sass">
+              <i class="fab fa-sass"></i>
+            </div>
+            <div class="project__tech-info">
+              <h3 class="project__tech-name">SASS</h3>
+              <p class="project__tech-desc">
+                采用 BEM 命名规范
+                <br>模块化的样式组织
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project__section">
+        <h2 class="project__section-title">后端技术</h2>
+        <div class="project__tech-list">
+          <div class="project__tech-item">
+            <div class="project__tech-icon project__tech-icon--nest">
+              <i class="fas fa-server"></i>
+            </div>
+            <div class="project__tech-info">
+              <h3 class="project__tech-name">Nest.js</h3>
+              <p class="project__tech-desc">
+                基于 TypeScript 的后端框架
+                <br>使用装饰器实现面向切面编程
+              </p>
+            </div>
+          </div>
+          <div class="project__tech-item">
+            <div class="project__tech-icon project__tech-icon--mysql">
+              <i class="fas fa-database"></i>
+            </div>
+            <div class="project__tech-info">
+              <h3 class="project__tech-name">MySQL</h3>
+              <p class="project__tech-desc">
+                关系型数据库
+                <br>使用 TypeORM 进行数据库操作
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project__section">
+        <h2 class="project__section-title">部署环境</h2>
+        <div class="project__tech-list">
+          <div class="project__tech-item">
+            <div class="project__tech-icon project__tech-icon--cloud">
+              <i class="fas fa-cloud"></i>
+            </div>
+            <div class="project__tech-info">
+              <h3 class="project__tech-name">阿里云</h3>
+              <p class="project__tech-desc">
+                ECS 云服务器
+                <br>域名解析与 SSL 证书
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
+
 <script setup>
-//定义背景照片存储位置
-import slide2_bg from '@/src/assets/homepage/slide2_bg.jpg';
-import icon from '@/src/assets/homepage/icon.jpg';
+import { onMounted } from 'vue';
 
-//控制默认展开panel
-import { ref,watch } from 'vue';
-const defaultexpand = ref([0]);
-
-//文本内容
-const unitext = {
-  breifintro: " 目前就读于西南大学计信院,前端工程师,曾负责某国企数据服务前端开发",
-  selfintro : "本人适应心强，勤勉不懈，对待工作认真负责，善于沟通、协调有较强的组织能力与团队精神;活泼开朗、乐观上进、勤于学习能不断提高自身的能力与综合素质。非常热爱前端这个领域，喜欢探索前端论坛学习新知识，未来在巩固温习现有技术栈的同时还想要学习Three.js、 wasm、 Electron等更多前端相关的技能。在未来的工作中，我将以充沛的精力，刻苦钻研的精神来努力工作，稳定地提高自己的工作能力。本人适应心强，勤勉不懈，对待工作认真负责，善于沟通、协调有较强的组织能力与团队精神;活泼开朗、乐观上进、勤于学习能不断提高自身的能力与综合素质。 "
-}
-
-//控制动画
-const props = defineProps(["is-active"])
-let isPlaying = ref(false);
-watch(props, (newVal, oldVal) => {
-  if (newVal.isActive) {
-    isPlaying.value = true;
-  } else {
-    isPlaying.value = false;
-  }
+onMounted(() => {
+  window.isShowFooter = false;
 });
-
 </script>
 
-<style scoped>
-.artt {
-  font-family: "Songti SC";
-}
+<style lang="scss" scoped>
+.project {
+  width: 100%;
+  height: 100%;
+  color: #2c3e50;
+  overflow-y: auto;
 
-:deep .pcard {
-  padding: 0;
-}
-#slide2_card {
-  background-image: url('@/src/assets/homepage/card_bg.jpg');
-  background-size: cover;
-}
-.text-wrap {
-  padding: 20px;
-}
-.avatar-wrap {
-  padding: 20px;
-}
+  // 滚动条样式
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
 
-.tracking-in-expand-fwd-bottom {
-  -webkit-animation: tracking-in-expand-fwd-bottom 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
-  animation: tracking-in-expand-fwd-bottom 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
-}
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+  }
 
-@-webkit-keyframes tracking-in-expand-fwd-bottom {
-  0% {
-    letter-spacing: -0.5em;
-    -webkit-transform: translateZ(-700px) translateY(500px);
-    transform: translateZ(-700px) translateY(500px);
-    opacity: 0;
+  &::-webkit-scrollbar-thumb {
+    background: #4a90e2;
+    border-radius: 3px;
   }
-  40% {
-    opacity: 0.6;
+
+  &__header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1rem;
   }
-  100% {
-    -webkit-transform: translateZ(0) translateY(0);
-    transform: translateZ(0) translateY(0);
-    opacity: 1;
+
+  &__title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(45deg, #4a90e2, #63b3ed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  &__subtitle {
+    font-size: 1.2rem;
+    color: #64748b;
+  }
+
+  &__content {
+    padding: 0 2rem;
+    padding-bottom: 2rem;
+  }
+
+  &__section {
+    margin-bottom: 2rem;
+
+    &-title {
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      color: #1a365d;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 0.5rem;
+    }
+  }
+
+  &__tech-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  &__tech-item {
+    display: flex;
+    align-items: flex-start;
+    background: rgba(74, 144, 226, 0.05);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+  }
+
+  &__tech-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    font-size: 1.5rem;
+    color: white;
+
+    &--vue {
+      background: #42b883;
+    }
+
+    &--sass {
+      background: #cc6699;
+    }
+
+    &--nest {
+      background: #e0234e;
+    }
+
+    &--mysql {
+      background: #00758f;
+    }
+
+    &--cloud {
+      background: #ff6a00;
+    }
+  }
+
+  &__tech-info {
+    flex: 1;
+  }
+
+  &__tech-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+  }
+
+  &__tech-desc {
+    font-size: 0.9rem;
+    color: #4a5568;
+    line-height: 1.6;
   }
 }
-@keyframes tracking-in-expand-fwd-bottom {
-  0% {
-    letter-spacing: -0.5em;
-    -webkit-transform: translateZ(-700px) translateY(500px);
-    transform: translateZ(-700px) translateY(500px);
-    opacity: 0;
-  }
-  40% {
-    opacity: 0.6;
-  }
-  100% {
-    -webkit-transform: translateZ(0) translateY(0);
-    transform: translateZ(0) translateY(0);
-    opacity: 1;
-  }
-}
+</style>
 
-
+<style>
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
 </style>

@@ -35,7 +35,7 @@ let routes = [
                 component: BlogEdit
             },
             {
-                path: "blog/edit/:id",
+                path: "blog/edit/:name",
                 name: "BlogEdit",
                 component: BlogEdit
             },
@@ -71,8 +71,8 @@ let routes = [
                 component: BlogDetail
             },
             {
-                path: "Home",
-                name: "Home",
+                path: "about",
+                name: "About",
                 component: Home
             },
             {

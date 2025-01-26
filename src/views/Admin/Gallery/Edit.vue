@@ -77,7 +77,6 @@ let imageList_ori = [];
 const galleryForm = ref({
     name: '',
     url: '',  // 头图URL
-    urls: []
 });
 
 // 图库对应图片列表
@@ -118,9 +117,7 @@ const fetchGalleryDetail = async () => {
         imageList_ori = await api.get(`/api/gallery/pictures/${galleryId}`);
         imageList.value = [...imageList_ori];
         // 前端修改的imageList反应到galleryForm.value.pictures中
-        if (imageList_ori.length) {
-            galleryForm.value.pictures = imageList;
-        }
+        galleryForm.value.pictures = imageList;
     } catch (error) {
         ElMessage.error('获取图库详情失败' + error);
     }
@@ -210,8 +207,6 @@ const handleSubmit = async () => {
         ElMessage.error('请填写图库名称');
         return;
     }
-    console.log(galleryForm.value.pictures);
-    console.log(imageList.value);
     try {
         await api.put(`/api/admin/update-gallery`, {
             id: galleryId,
@@ -248,7 +243,6 @@ const deleteImages = async (names) => {
     names.forEach(name => {
         params.Delete.Objects.push({ Key: name });
     })
-    console.log(params);
     try {
         await client.send(new DeleteObjectsCommand(params));
         ElMessage.success('删除图片已从对象存储中删除');

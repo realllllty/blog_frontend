@@ -31,12 +31,13 @@ import AdminNav from '@/src/components/Admin/AdminNav.vue';
 
 const route = useRoute();
 const router = useRouter();
-const blogId = computed(() => route.params.id);
-const isEdit = computed(() => !!blogId.value);
+const blogName = computed(() => decodeURIComponent(route.params.name));
+const isEdit = computed(() => route.path.includes('edit'));
 
 const blogForm = ref({
     title: '',
-    content: ''
+    content: '',
+    id: ''
 });
 
 // 获取博客详情
@@ -44,8 +45,12 @@ const fetchBlogDetail = async () => {
     if (!isEdit.value) return;
 
     try {
-        const response = await api.get(`/api/admin/blog/${blogId.value}`);
-        blogForm.value = response.data;
+        const response = await api.get(`/api/articles/detail/${encodeURIComponent(blogName.value)}`);
+        blogForm.value = {
+            title: blogName.value,
+            content: response.content,
+            id: response.id
+        };
     } catch (error) {
         ElMessage.error('获取博客详情失败');
     }
@@ -60,10 +65,16 @@ const handleSubmit = async () => {
 
     try {
         if (isEdit.value) {
-            await api.put(`/api/admin/update-blog/${blogId.value}`, blogForm.value);
+            await api.put('/api/admin/update-article', {
+                id: blogForm.value.id,
+                content: blogForm.value.content
+            });
             ElMessage.success('博客更新成功');
         } else {
-            await api.post('/api/admin/create-blog', blogForm.value);
+            await api.post('/api/admin/create-blog', {
+                title: blogForm.value.title,
+                content: blogForm.value.content
+            });
             ElMessage.success('博客发布成功');
         }
         router.push('/admin/blog');

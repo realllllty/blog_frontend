@@ -38,7 +38,7 @@ onMounted(() => {
 const content = ref('');
 async function fetchContent() {
     const response = await api.get(`/api/articles/detail/${blogName.value}`);
-    content.value = response;
+    content.value = response.content;
 }
 
 // 获取heading state

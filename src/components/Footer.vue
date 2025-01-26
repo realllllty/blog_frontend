@@ -1,31 +1,40 @@
 <template>
-    <div class="footer">
-      <div class="footer_logo">
-        <div class="footer_logo__text">
-            LIN's BLOG
+    <div class="footer" v-if="isShowFooter">
+        <div class="footer_logo">
+            <div class="footer_logo__text">
+                LIN's BLOG
+            </div>
         </div>
-      </div>
-      <div class="footer_contact">
-        <div class="footer_contact__text">
-            email: reallinty@icloud.com
+        <div class="footer_contact">
+            <div class="footer_contact__text">
+                email: reallinty@icloud.com
+            </div>
+            <div class="footer_contact__text">
+                github:
+                <a href="https://github.com/realllllty">
+                    https://github.com/realllllty
+                </a>
+            </div>
         </div>
-        <div class="footer_contact__text">
-            github:
-            <a href="https://github.com/realllllty">
-                https://github.com/realllllty
-            </a>
-        </div>
-      </div>
 
-      <div class="footer_credit">
-        <div class="footer_credit__text">
-            © 2025 LIN TIANYU
+        <div class="footer_credit">
+            <div class="footer_credit__text">
+                © 2025 LIN TIANYU
+            </div>
         </div>
-      </div>
     </div>
 
 </template>
 <script setup>
+import { ref, watch } from 'vue';
+
+const isShowFooter = ref(true);
+import { useRoute } from 'vue-router';
+const route = useRoute();
+// 监听路由变化
+watch(() => route.fullPath, (newPath) => {
+    isShowFooter.value = !newPath.includes('about');
+}, { immediate: true });
 
 </script>
 
@@ -45,6 +54,7 @@
 
     &_logo {
         width: 500px;
+
         &__text {
             font-weight: 300;
             font-size: 70px;
@@ -55,6 +65,7 @@
 
     &_contact {
         flex-grow: 1;
+
         &__text {
             font-weight: 300;
             font-size: 40px;

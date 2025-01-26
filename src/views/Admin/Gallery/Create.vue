@@ -73,11 +73,9 @@ const uploadToCloudflare = async (options) => {
             quality: 0.6,
             async success(result) {
                 await uploadImage(result);
-                options.onSuccess();
                 ElMessage.success('图片上传成功');
             },
             error(err) {
-                options.onError();
                 ElMessage.error('图片压缩失败');
             },
         });
@@ -89,17 +87,21 @@ const uploadToCloudflare = async (options) => {
 
 // 上传图片到Cloudflare
 const uploadImage = async (image) => {
-    const params = {
-        Bucket: "blog",
-        Key: image.name,
-        Body: image,
-        ContentType: image.type
-    };
-    try {
-        await client.send(new PutObjectCommand(params));
-    } catch (err) {
-        ElMessage.error('上传失败' + err);
-        throw err;
+    if (client) {
+        const params = {
+            Bucket: "blog",
+            Key: image.name,
+            Body: image,
+            ContentType: image.type
+        };
+        try {
+            await client.send(new PutObjectCommand(params));
+        } catch (err) {
+            ElMessage.error('上传失败' + err);
+            throw err;
+        }
+    } else {
+        ElMessage.error('S3客户端未初始化');
     }
 }
 

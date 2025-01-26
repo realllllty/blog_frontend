@@ -29,7 +29,4 @@ declare module 'vue' {
     Slide1: typeof import('./src/components/Swiper-slides/slide1.vue')['default']
     Slide2: typeof import('./src/components/Swiper-slides/slide2.vue')['default']
   }
-  export interface ComponentCustomProperties {
-    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
-  }
 }

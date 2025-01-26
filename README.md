@@ -21,3 +21,7 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 ### v-wave
 - 添加涟漪效果
 - 
+
+# Gallery图片说明
+https://www.iloveimg.com
+先调整大小(-25%)后压缩

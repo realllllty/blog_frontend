@@ -1,10 +1,10 @@
 <template>
     <div class="header">
-        <header class="bg-white">
+        <header class="backdrop-blur-md bg-black/10">
             <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
                 <div class="flex lg:flex-1">
                     <a href="/" class="-m-1.5 p-1.5">
-                        <img src="/src/assets/icon.jpg" alt="Logo" class="h-10 w-auto">
+                        <img src="/src/assets/icon.png" alt="Logo" class="h-10 w-auto">
                     </a>
                 </div>
                 <div class="hidden lg:flex lg:gap-x-12">
@@ -34,7 +34,8 @@ const route = useRoute();
 
 const navItemsConst = [
     { label: '博客(blog)', path: '/fullpage/myblog', isActive: false },
-    { label: '照片墙(gallery)', path: '/fullpage/gallery', isActive: false }
+    { label: '照片(gallery)', path: '/fullpage/gallery', isActive: false },
+    { label: '关于(about)', path: '/fullpage/about', isActive: false }
 ]
 
 const navItems = ref(JSON.parse(JSON.stringify(navItemsConst)));
@@ -101,7 +102,7 @@ onMounted(() => {});
 .header {
     border-bottom: 1px solid #000;
     // padding: 20px 0px;
-    z-index: 3;
+    z-index: 5;
 
     &_index {
         position: relative; 

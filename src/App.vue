@@ -36,8 +36,11 @@ onMounted(() => {
 let showBanner = ref(true);
 function closebanner() {
     showBanner.value = false;
-    console.log('close');
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.v-banner {
+    z-index: 10;
+}
+</style>

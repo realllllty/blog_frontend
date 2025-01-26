@@ -9,10 +9,14 @@
         <div class="blog-table">
             <el-table :data="blogList" style="width: 100%">
                 <el-table-column prop="title" label="标题" />
-                <el-table-column prop="createTime" label="创建时间" />
+                <el-table-column prop="createdAt" label="创建时间">
+                    <template #default="scope">
+                        {{ new Date(scope.row.createdAt).toLocaleString() }}
+                    </template>
+                </el-table-column>
                 <el-table-column label="操作" width="200">
                     <template #default="scope">
-                        <el-button type="primary" link @click="$router.push(`/admin/blog/edit/${scope.row.id}`)">
+                        <el-button type="primary" link @click="$router.push(`/admin/blog/edit/${encodeURIComponent(scope.row.title)}`)">
                             编辑
                         </el-button>
                         <el-button type="danger" link @click="handleDelete(scope.row)">
@@ -36,8 +40,8 @@ const blogList = ref([]);
 // 获取博客列表
 const fetchBlogList = async () => {
     try {
-        const response = await api.get('/api/admin/blogs');
-        blogList.value = response.data;
+        const response = await api.get('/api/articles/list');
+        blogList.value = response;
     } catch (error) {
         ElMessage.error('获取博客列表失败');
     }
@@ -51,7 +55,9 @@ const handleDelete = (blog) => {
         type: 'warning',
     }).then(async () => {
         try {
-            await api.delete(`/api/admin/delete-blog/${blog.id}`);
+            await api.delete('/api/admin/delete-article', {
+                data: { id: blog.id }
+            });
             ElMessage.success('删除成功');
             fetchBlogList();
         } catch (error) {
